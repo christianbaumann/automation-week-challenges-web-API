@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "8d71684a-9520-4409-a246-b9f9e6440ac3",
+		"name": "Intermediate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da114fc8-f254-4167-b922-46d1f94b0971",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "automationintesting.online"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "dnt",
+						"value": "1"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "origin",
+						"value": "https://automationintesting.online"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://automationintesting.online/"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9,fr;q=0.8,de;q=0.7"
+					},
+					{
+						"key": "cookie",
+						"value": "__cfduid=d0fc37bb2f90b85a2f7b51d1dfbeb38a61604077088; _ga=GA1.2.374988874.1604077091; _gid=GA1.2.178556629.1604077091; banner=true; _gat=1",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin\",\"password\":\"password\"}"
+				},
+				"url": {
+					"raw": "https://automationintesting.online/auth/login",
+					"protocol": "https",
+					"host": [
+						"automationintesting",
+						"online"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
