@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "Get request to /branding API and assert response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b7248cd7-4415-4df7-803f-20712cc41ebb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -24,7 +36,8 @@
 					},
 					{
 						"key": "user-agent",
-						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36"
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36",
+						"disabled": true
 					},
 					{
 						"key": "content-type",
@@ -52,15 +65,15 @@
 					},
 					{
 						"key": "cookie",
-						"value": "__cfduid=d0fc37bb2f90b85a2f7b51d1dfbeb38a61604077088; _ga=GA1.2.374988874.1604077091; _gid=GA1.2.178556629.1604077091; banner=true; token=Kf6XV9RGoui5pzFE; _gat=1"
+						"value": "__cfduid=d0fc37bb2f90b85a2f7b51d1dfbeb38a61604077088; _ga=GA1.2.374988874.1604077091; _gid=GA1.2.178556629.1604077091; banner=true; token=Kf6XV9RGoui5pzFE; _gat=1",
+						"disabled": true
 					}
 				],
 				"url": {
-					"raw": "https://automationintesting.online/branding/",
-					"protocol": "https",
+					"raw": "{{protocol}}://{{url}}/branding/",
+					"protocol": "{{protocol}}",
 					"host": [
-						"automationintesting",
-						"online"
+						"{{url}}"
 					],
 					"path": [
 						"branding",
