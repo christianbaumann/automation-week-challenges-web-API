@@ -101,11 +101,10 @@
 					"raw": "{\"username\":\"admin\",\"password\":\"password\"}"
 				},
 				"url": {
-					"raw": "https://automationintesting.online/auth/login",
-					"protocol": "https",
+					"raw": "{{protocol}}://{{url}}/auth/login",
+					"protocol": "{{protocol}}",
 					"host": [
-						"automationintesting",
-						"online"
+						"{{url}}"
 					],
 					"path": [
 						"auth",
@@ -174,11 +173,10 @@
 					"raw": "{\"roomNumber\":\"666\",\"type\":\"Suite\",\"accessible\":\"true\",\"description\":\"Please enter a description for this room\",\"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\"roomPrice\":\"666\",\"features\":[\"WiFi\",\"Refreshments\",\"Views\"]}"
 				},
 				"url": {
-					"raw": "https://automationintesting.online/room/",
-					"protocol": "https",
+					"raw": "{{protocol}}://{{url}}/room/",
+					"protocol": "{{protocol}}",
 					"host": [
-						"automationintesting",
-						"online"
+						"{{url}}"
 					],
 					"path": [
 						"room",
