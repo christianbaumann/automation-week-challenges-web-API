@@ -170,7 +170,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"roomNumber\":\"666\",\r\n   \"type\":\"Suite\",\r\n   \"accessible\":\"true\",\r\n   \"description\":\"Please enter a description for this room\",\r\n   \"image\":\"https://www.mwtestconsultancy.co.uk/img/room1.jpg\",\r\n   \"roomPrice\":\"666\",\r\n   \"features\":[\r\n      \"WiFi\",\r\n      \"Refreshments\",\r\n      \"Views\"\r\n   ]\r\n}"
+					"raw": "{\r\n   \"roomNumber\":\"{{roomNumber}}\",\r\n   \"type\":\"{{type}}\",\r\n   \"accessible\":\"{{accessible}}\",\r\n   \"description\":\"{{description}}\",\r\n   \"image\":\"{{image}}\",\r\n   \"roomPrice\":\"{{roomPrice}}\",\r\n   \"features\":[{{features}}]\r\n}"
 				},
 				"url": {
 					"raw": "{{protocol}}://{{url}}/room/",
