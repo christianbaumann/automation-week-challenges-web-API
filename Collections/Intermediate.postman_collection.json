@@ -13,7 +13,31 @@
 					"script": {
 						"id": "da114fc8-f254-4167-b922-46d1f94b0971",
 						"exec": [
-							""
+							"pm.test(\"Expect http status code to be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect response content to be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cookie is set\", function() {\r",
+							"    pm.expect(pm.cookies.get(\"__cfduid\")).not.to.eq(undefined);\r",
+							"});\r",
+							"\r",
+							"const resBody = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"token\", resBody.token)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9cf8eab1-0580-4e71-a519-d0a6a87b0469",
+						"exec": [
+							"pm.environment.unset(\"token\")"
 						],
 						"type": "text/javascript"
 					}
