@@ -116,6 +116,86 @@
 		},
 		{
 			"name": "Create Room",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6d75726-ea40-48f8-bd25-5e08de639ce5",
+						"exec": [
+							"pm.test(\"Expect http status code to be 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect response content to be JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cookie is set\", function() {\r",
+							"    pm.expect(pm.cookies.get(\"__cfduid\")).not.to.eq(undefined);\r",
+							"});\r",
+							"\r",
+							"const resBody = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Expect room id to be a number\", function () {\r",
+							"    pm.expect(resBody.roomid).to.be.a(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect room number to equal \" + pm.environment.get(\"roomNumber\"), function () {\r",
+							"    pm.expect(resBody.roomNumber).to.eql(parseInt(pm.environment.get(\"roomNumber\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect room type to equal \" + pm.environment.get(\"type\"), function () {\r",
+							"    pm.expect(resBody.type).to.eql(pm.environment.get(\"type\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect accessibility to be \" + pm.environment.get(\"accessible\"), function () {\r",
+							"    let expectedAccessibility = (pm.environment.get(\"accessible\").toLowerCase() == 'true');\r",
+							"    pm.expect(resBody.accessible).to.eql(expectedAccessibility);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect image link to be \" + pm.environment.get(\"image\"), function () {\r",
+							"    pm.expect(resBody.image).to.eql(pm.environment.get(\"image\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect description link to be \" + pm.environment.get(\"description\"), function () {\r",
+							"    pm.expect(resBody.description).to.eql(pm.environment.get(\"description\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect featurs to be \" + pm.environment.get(\"features\"), function () {\r",
+							"    let expextedFeatures = pm.environment.get(\"features\").split(\",\");\r",
+							"    pm.expect(resBody.features).to.eql(expextedFeatures);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expect room price to be \" + pm.environment.get(\"price\"), function () {\r",
+							"    pm.expect(resBody.price).to.eql(pm.environment.get(\"price\"));\r",
+							"});\r",
+							"\r",
+							"pm.environment.unset(\"features_body\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d1402101-0584-4f02-8522-f692e63434bd",
+						"exec": [
+							"let features = pm.environment.get(\"features\");\r",
+							"\r",
+							"let features_body = '[';\r",
+							"\r",
+							"features.split(\",\").forEach(function(feature) {\r",
+							"    features_body = features_body + '\"' + feature + '\",'\r",
+							"});\r",
+							"\r",
+							"features_body = features_body.substring(0, features_body.length - 1) + \"]\"\r",
+							"\r",
+							"pm.environment.set(\"features_body\", features_body);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -170,7 +250,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"roomNumber\":\"{{roomNumber}}\",\r\n   \"type\":\"{{type}}\",\r\n   \"accessible\":\"{{accessible}}\",\r\n   \"description\":\"{{description}}\",\r\n   \"image\":\"{{image}}\",\r\n   \"roomPrice\":\"{{roomPrice}}\",\r\n   \"features\":[{{features}}]\r\n}"
+					"raw": "{\r\n   \"roomNumber\":\"{{roomNumber}}\",\r\n   \"type\":\"{{type}}\",\r\n   \"accessible\":\"{{accessible}}\",\r\n   \"description\":\"{{description}}\",\r\n   \"image\":\"{{image}}\",\r\n   \"roomPrice\":\"{{roomPrice}}\",\r\n   \"features\":{{features_body}}\r\n}"
 				},
 				"url": {
 					"raw": "{{protocol}}://{{url}}/room/",
